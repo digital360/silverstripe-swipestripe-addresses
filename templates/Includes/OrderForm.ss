@@ -41,7 +41,7 @@
 		<hr />
 		
 		<section class="order-details">
-			<h3><% _t('CheckoutForm.YOUR_ORDER', 'Your Order') %></h3>
+			<h2 class="heading"><% _t('CheckoutForm.YOUR_ORDER', 'Your Order') %></h2>
 
 			<div id="cart-loading-js" class="cart-loading">
 				<div>
@@ -72,10 +72,7 @@
 
 	<% if Cart.Items %>
 		<% if Actions %>
-		<div class="Actions">
-			<div class="loading">
-				<img src="swipestripe/images/loading.gif" />
-			</div>
+		<div class="actions">
 			<% loop Actions %>
 				$Field
 			<% end_loop %>
