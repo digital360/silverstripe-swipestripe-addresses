@@ -3,7 +3,10 @@
 <% end_if %>
 
 	<% if Message %>
-		<p id="{$FormName}_error" class="message $MessageType">$Message</p>
+		<div id="{$FormName}_error" class="message error $MessageType">
+			<p>We could not process the payment because:</p>
+			<p>$Message</p>
+		</div>
 	<% else %>
 		<p id="{$FormName}_error" class="message $MessageType" style="display: none"></p>
 	<% end_if %>
@@ -65,6 +68,7 @@
 			<% loop PaymentFields %>
 				$FieldHolder
 			<% end_loop %>
+			<div class="loader"></div>
 		</section>
 
 		<div class="clear" />
