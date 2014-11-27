@@ -3,22 +3,15 @@
 <% end_if %>
 
 	<% if Message %>
-		<p id="{$FormName}_error" class="message $MessageType">$Message</p>
+		<div id="{$FormName}_error" class="message error $MessageType">
+			<p>We could not process the order because:</p>
+			<p>$Message</p>
+		</div>
 	<% else %>
 		<p id="{$FormName}_error" class="message $MessageType" style="display: none"></p>
 	<% end_if %>
 
 	<fieldset>
-
-		<% if PersonalDetailsFields %>
-		<section class="personal-details">
-			<% loop PersonalDetailsFields %>
-				$FieldHolder
-			<% end_loop %>
-		</section>
-		
-		<hr />
-		<% end_if %>
 
 		<section class="address">
 			<div id="address-shipping">
@@ -65,6 +58,7 @@
 			<% loop PaymentFields %>
 				$FieldHolder
 			<% end_loop %>
+			<div class="loader"></div>
 		</section>
 
 		<div class="clear" />

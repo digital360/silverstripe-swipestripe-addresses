@@ -221,7 +221,7 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('ShippingAddress', _t('CheckoutPage.ADDRESS',"Address"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_ADDRESS',"Please enter an address."))
 				->addExtraClass('address-break'),
-			TextField::create('ShippingAddressLine2', '&nbsp;'),
+			TextField::create('ShippingAddressLine2', 'Address Line 2'),
 			TextField::create('ShippingCity', _t('CheckoutPage.CITY',"City"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_CITY',"Please enter a city.")),
 			TextField::create('ShippingPostalCode', _t('CheckoutPage.POSTAL_CODE',"Zip / Postal Code")),
@@ -248,7 +248,7 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('BillingAddress', _t('CheckoutPage.ADDRESS',"Address"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURADDRESS',"Please enter your address."))
 				->addExtraClass('address-break'),
-			TextField::create('BillingAddressLine2', '&nbsp;'),
+			TextField::create('BillingAddressLine2', 'Address Line 2'),
 			TextField::create('BillingCity', _t('CheckoutPage.CITY',"City"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURCITY',"Please enter your city")),
 			TextField::create('BillingPostalCode', _t('CheckoutPage.POSTALCODE',"Zip / Postal Code")),
