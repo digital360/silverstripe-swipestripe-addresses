@@ -206,7 +206,7 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('ShippingCity', _t('CheckoutPage.CITY',"City"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_CITY',"Please enter a city.")),
 			TextField::create('ShippingPostalCode', _t('CheckoutPage.POSTAL_CODE',"Zip / Postal Code")),
-			TextField::create('ShippingState', _t('CheckoutPage.STATE',"State / Province"))
+			TextField::create('ShippingState', _t('CheckoutPage.STATE',"State"))
 				->addExtraClass('address-break'),
 			DropdownField::create('ShippingCountryCode', 
 					_t('CheckoutPage.COUNTRY',"Country"), 
@@ -233,7 +233,7 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('BillingCity', _t('CheckoutPage.CITY',"City"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURCITY',"Please enter your city")),
 			TextField::create('BillingPostalCode', _t('CheckoutPage.POSTALCODE',"Zip / Postal Code")),
-			TextField::create('BillingState', _t('CheckoutPage.STATE',"State / Province"))
+			TextField::create('BillingState', _t('CheckoutPage.STATE',"State"))
 				->addExtraClass('address-break'),
 			DropdownField::create('BillingCountryCode', 
 					_t('CheckoutPage.COUNTRY',"Country"), 
@@ -252,11 +252,15 @@ class Addresses_OrderForm extends Extension {
 			'ShippingSurname',
 			'ShippingAddress',
 			'ShippingCity',
+			'ShippingState',
+			'ShippingPostalCode',
 			'ShippingCountryCode',
 			'BillingFirstName',
 			'BillingSurname',
 			'BillingAddress',
 			'BillingCity',
+			'BillingState',
+			'BillingPostalCode',
 			'BillingCountryCode'
 		));
 	}
