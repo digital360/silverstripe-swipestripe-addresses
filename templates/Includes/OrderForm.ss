@@ -13,6 +13,16 @@
 
 	<fieldset>
 
+		<% if PersonalDetailsFields %>
+		<section class="personal-details">
+			<% loop PersonalDetailsFields %>
+				$FieldHolder
+			<% end_loop %>
+		</section>
+		
+		<hr />
+		<% end_if %>
+
 		<section class="address">
 			<div id="address-shipping">
 				<% loop ShippingAddressFields %>
