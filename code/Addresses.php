@@ -67,45 +67,64 @@ class Addresses_Customer extends DataExtension {
 		//Default is not used when comparing
 
 		$data = $order->toMap();
+
+		// TODO: Maybe return last filled out address?
+		// Ideally you wouldn't have an unfilled address.
+		// 
+		// Get last used address from order
+		// $query = DB::query('select * from `Order` where ID = ' . convert::raw2sql($data['ID']));
 		
+		// Missing fields from $data, need to grab
+		// extra fields and populate $data with them
+		// if ($query->numRecords() > 0) {
+		// 	while($nextResult = $query->next()) {
+		// 		foreach ($nextResult as $key => $field) {
+
+		// 			// Only add records we don't already have
+		// 			if (!array_key_exists($key, $data)) {
+		// 				$data[$key] = $nextResult[$key];
+		// 			}
+		// 		}
+		// 	}
+
 		// Set Firstname/Surname Fields on Member table
 		if(!$this->owner->FirstName) {
-			$this->owner->FirstName = $data['ShippingFirstName'];
+			$this->owner->FirstName = isset($data['ShippingFirstName']) ? $data['ShippingFirstName'] : null;
 			$this->owner->write();
 		}
 		if(!$this->owner->Surname) {
-			$this->owner->Surname = $data['ShippingSurname'];
+			$this->owner->Surname = isset($data['ShippingSurname']) ? $data['ShippingSurname'] : null;
 			$this->owner->write();
 		}
 		
 		$shippingAddress = Address_Shipping::create(array(
 			'MemberID' => $this->owner->ID,
-			'FirstName' => $data['ShippingFirstName'],
-			'Surname' => $data['ShippingSurname'],
-			'Company' => $data['ShippingCompany'],
-			'Address' => $data['ShippingAddress'],
-			'AddressLine2' => $data['ShippingAddressLine2'],
-			'City' => $data['ShippingCity'],
-			'PostalCode' => $data['ShippingPostalCode'],
-			'State' => $data['ShippingState'],
-			'CountryName' => $data['ShippingCountryName'],
-			'CountryCode' => $data['ShippingCountryCode'],
+			'FirstName' => isset($data['ShippingFirstName']) ? $data['ShippingFirstName'] : null,
+			'Surname' => isset($data['ShippingSurname']) ? $data['ShippingSurname'] : null,
+			'Company' => isset($data['ShippingCompany']) ? $data['ShippingCompany'] : null,
+			'Address' => isset($data['ShippingAddress']) ? $data['ShippingAddress'] : null,
+			'AddressLine2' => isset($data['ShippingAddressLine2']) ? $data['ShippingAddressLine2'] : null,
+			'City' => isset($data['ShippingCity']) ? $data['ShippingCity'] : null,
+			'PostalCode' => isset($data['ShippingPostalCode']) ? $data['ShippingPostalCode'] : null,
+			'State' => isset($data['ShippingState']) ? $data['ShippingState'] : null,
+			'CountryName' => isset($data['ShippingCountryName']) ? $data['ShippingCountryName'] : null,
+			'CountryCode' => isset($data['ShippingCountryCode']) ? $data['ShippingCountryCode'] : null,
 			'RegionName' => (isset($data['ShippingRegionName'])) ? $data['ShippingRegionName'] : null,
-			'RegionCode' => (isset($data['ShippingRegionCode'])) ? $data['ShippingRegionCode'] : null,
+			'RegionCode' => (isset($data['ShippingRegionCode'])) ? $data['ShippingRegionCode'] : null
 		));
 
 		$billingAddress = Address_Billing::create(array(
 			'MemberID' => $this->owner->ID,
-			'FirstName' => $data['BillingFirstName'],
-			'Surname' => $data['BillingSurname'],
-			'Company' => $data['BillingCompany'],
-			'Address' => $data['BillingAddress'],
-			'AddressLine2' => $data['BillingAddressLine2'],
-			'City' => $data['BillingCity'],
-			'PostalCode' => $data['BillingPostalCode'],
-			'State' => $data['BillingState'],
-			'CountryName' => $data['BillingCountryName'],
-			'CountryCode' => $data['BillingCountryCode'],
+			'FirstName' => isset($data['BillingFirstName']) ? $data['BillingFirstName'] : null,
+			'Surname' => isset($data['BillingSurname']) ? $data['BillingSurname'] : null,
+			'Company' => isset($data['BillingCompany']) ? $data['BillingCompany'] : null,
+			'Address' => isset($data['BillingAddress']) ? $data['BillingAddress'] : null,
+			'AddressLine2' => isset($data['BillingAddressLine2']) ? $data['BillingAddressLine2'] : null,
+			'City' => isset($data['BillingCity']) ? $data['BillingCity'] : null,
+			'PostalCode' => isset($data['BillingPostalCode']) ? $data['BillingPostalCode'] : null,
+			'State' => isset($data['BillingState']) ? $data['BillingState'] : null,
+			'CountryName' => isset($data['BillingCountryName']) ? $data['BillingCountryName'] : null,
+			'CountryCode' => isset($data['BillingCountryCode']) ? $data['BillingCountryCode'] : null,
 			'RegionName' => (isset($data['BillingRegionName'])) ? $data['ShippingRegionName'] : null,
 			'RegionCode' => (isset($data['BillingRegionCode'])) ? $data['ShippingRegionCode'] : null,
 		));
