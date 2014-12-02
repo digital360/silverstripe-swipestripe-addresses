@@ -12,19 +12,19 @@
 	<% end_if %>
 
 	<fieldset>
-
-		<% if PersonalDetailsFields %>
-		<section class="personal-details">
-			<% loop PersonalDetailsFields %>
+		
+		<% if LoginFields %>
+		<section class="login-details">
+			<% loop LoginFields %>
 				$FieldHolder
 			<% end_loop %>
 		</section>
 		
-		<hr />
 		<% end_if %>
 
 		<section class="address">
 			<div id="address-shipping">
+				<h3><b><% _t('CheckoutPage.STEP1', 'Step 1 of 5:') %></b> <% _t('CheckoutPage.SHIPPING_ADDRESS', 'Shipping Address') %></h3>
 				<% loop ShippingAddressFields %>
 					$FieldHolder
 				<% end_loop %>
@@ -35,6 +35,7 @@
 	
 		<section class="address">
 			<div id="address-billing">
+				<h3><b><% _t('CheckoutPage.STEP2', 'Step 2 of 5:') %></b> <% _t('CheckoutPage.BILLINGADDRESS', 'Billing Address') %></h3>
 				<% loop BillingAddressFields %>
 					$FieldHolder
 				<% end_loop %>
@@ -44,7 +45,7 @@
 		<hr />
 		
 		<section class="order-details">
-			<h3><% _t('CheckoutForm.YOUR_ORDER', 'Your Order') %></h3>
+			<h3><b><% _t('CheckoutPage.STEP3', 'Step 3 of 5:') %></b> <% _t('CheckoutPage.REVIEW', 'Your Order') %></h3>
 
 			<div id="cart-loading-js" class="cart-loading">
 				<div>
@@ -63,8 +64,22 @@
 		</section>
 		
 		<hr />
-	 
+
+		<% if PersonalDetailsFields %>
+		<section class="personal-details">
+			<h3><b><% _t('CheckoutPage.STEP4', 'Step 4 of 5:') %></b> <% _t('CheckoutPage.ACCOUNT', 'Create Account') %></h3>
+			<div class="alert alert-info">By creating an account you can log in and check your order status. You can also use this account next time to save time in the checkout.</div>
+		
+			<% loop PersonalDetailsFields %>
+				$FieldHolder
+			<% end_loop %>
+		</section>
+		
+		<hr />
+		<% end_if %>
+
 		<section class="payment-details">
+			<h3><b><% _t('CheckoutPage.STEP5', 'Step 5 of 5:') %></b> <% _t('CheckoutPage.PAYMENT', 'Payment Method') %></h3>
 			<% loop PaymentFields %>
 				$FieldHolder
 			<% end_loop %>
