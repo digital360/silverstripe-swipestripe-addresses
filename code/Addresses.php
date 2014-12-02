@@ -47,7 +47,7 @@ class Addresses_Order extends DataExtension {
 	public function onBeforePayment() {
 
 		//Save the addresses to the Customer
-		$customer = $this->owner->Member();
+		$customer = $this->owner->Customer();
 		if ($customer && $customer->exists()) {
 			$customer->createAddresses($this->owner);
 		}
