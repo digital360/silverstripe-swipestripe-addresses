@@ -24,7 +24,7 @@
 
 		<section class="address">
 			<div id="address-shipping">
-				<h3><b><% _t('CheckoutPage.STEP1', 'Step 1 of 5:') %></b> <% _t('CheckoutPage.SHIPPING_ADDRESS', 'Shipping Address') %></h3>
+				<h3><strong><% _t('CheckoutPage.STEP1', 'Step 1 of 5:') %></strong> <% _t('CheckoutPage.SHIPPING_ADDRESS', 'Shipping Address') %></h3>
 				<% loop ShippingAddressFields %>
 					$FieldHolder
 				<% end_loop %>
@@ -35,7 +35,7 @@
 	
 		<section class="address">
 			<div id="address-billing">
-				<h3><b><% _t('CheckoutPage.STEP2', 'Step 2 of 5:') %></b> <% _t('CheckoutPage.BILLINGADDRESS', 'Billing Address') %></h3>
+				<h3><strong><% _t('CheckoutPage.STEP2', 'Step 2 of 5:') %></strong> <% _t('CheckoutPage.BILLINGADDRESS', 'Billing Address') %></h3>
 				<% loop BillingAddressFields %>
 					$FieldHolder
 				<% end_loop %>
@@ -45,7 +45,7 @@
 		<hr />
 		
 		<section class="order-details">
-			<h3><b><% _t('CheckoutPage.STEP3', 'Step 3 of 5:') %></b> <% _t('CheckoutPage.REVIEW', 'Your Order') %></h3>
+			<h3><strong><% _t('CheckoutPage.STEP3', 'Step 3 of 5:') %></strong> <% _t('CheckoutPage.REVIEW', 'Your Order') %></h3>
 
 			<div id="cart-loading-js" class="cart-loading">
 				<div>
