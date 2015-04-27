@@ -6,12 +6,14 @@ class Addresses_Order extends DataExtension {
 		//Address fields
 		'ShippingFirstName' => 'Varchar',
 		'ShippingSurname' => 'Varchar',
+		'ShippingEmail' => 'Varchar',
+		'ShippingTelephone' => 'Varchar',
 		'ShippingCompany' => 'Varchar',
 		'ShippingAddress' => 'Varchar(255)',
 		'ShippingAddressLine2' => 'Varchar(255)',
 		'ShippingCity' => 'Varchar(100)',
-		'ShippingPostalCode' => 'Varchar(30)',
 		'ShippingState' => 'Varchar(100)',
+		'ShippingPostalCode' => 'Varchar(30)',
 		'ShippingCountryName' => 'Varchar',
 		'ShippingCountryCode' => 'Varchar(2)', //ISO 3166 
 		'ShippingRegionName' => 'Varchar',
@@ -101,12 +103,14 @@ class Addresses_Customer extends DataExtension {
 			'MemberID' => $this->owner->ID,
 			'FirstName' => isset($data['ShippingFirstName']) ? $data['ShippingFirstName'] : null,
 			'Surname' => isset($data['ShippingSurname']) ? $data['ShippingSurname'] : null,
+			'Email' => isset($data['ShippingEmail']) ? $data['ShippingEmail'] : null,
+			'Telephone' => isset($data['ShippingTelephone']) ? $data['ShippingTelephone'] : null,
 			'Company' => isset($data['ShippingCompany']) ? $data['ShippingCompany'] : null,
 			'Address' => isset($data['ShippingAddress']) ? $data['ShippingAddress'] : null,
 			'AddressLine2' => isset($data['ShippingAddressLine2']) ? $data['ShippingAddressLine2'] : null,
 			'City' => isset($data['ShippingCity']) ? $data['ShippingCity'] : null,
-			'PostalCode' => isset($data['ShippingPostalCode']) ? $data['ShippingPostalCode'] : null,
 			'State' => isset($data['ShippingState']) ? $data['ShippingState'] : null,
+			'PostalCode' => isset($data['ShippingPostalCode']) ? $data['ShippingPostalCode'] : null,
 			'CountryName' => isset($data['ShippingCountryName']) ? $data['ShippingCountryName'] : null,
 			'CountryCode' => isset($data['ShippingCountryCode']) ? $data['ShippingCountryCode'] : null,
 			'RegionName' => (isset($data['ShippingRegionName'])) ? $data['ShippingRegionName'] : null,
@@ -121,8 +125,8 @@ class Addresses_Customer extends DataExtension {
 			'Address' => isset($data['BillingAddress']) ? $data['BillingAddress'] : null,
 			'AddressLine2' => isset($data['BillingAddressLine2']) ? $data['BillingAddressLine2'] : null,
 			'City' => isset($data['BillingCity']) ? $data['BillingCity'] : null,
-			'PostalCode' => isset($data['BillingPostalCode']) ? $data['BillingPostalCode'] : null,
 			'State' => isset($data['BillingState']) ? $data['BillingState'] : null,
+			'PostalCode' => isset($data['BillingPostalCode']) ? $data['BillingPostalCode'] : null,
 			'CountryName' => isset($data['BillingCountryName']) ? $data['BillingCountryName'] : null,
 			'CountryCode' => isset($data['BillingCountryCode']) ? $data['BillingCountryCode'] : null,
 			'RegionName' => (isset($data['BillingRegionName'])) ? $data['ShippingRegionName'] : null,
@@ -216,18 +220,22 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('ShippingFirstName', _t('CheckoutPage.FIRSTNAME',"First Name"))
 				->addExtraClass('shipping-firstname')
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_FIRSTNAME',"Please enter a first name.")),
-			TextField::create('ShippingSurname', _t('CheckoutPage.SURNAME',"Surname"))
+			TextField::create('ShippingSurname', _t('CheckoutPage.SURNAME',"Last Name"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_SURNAME',"Please enter a surname.")),
+			TextField::create('ShippingEmail', _t('CheckoutPage.EMAIL',"Email"))
+				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_EMAIL',"Please enter an email address.")),
+			TextField::create('ShippingTelephone', _t('CheckoutPage.TELEPHONE',"Telephone"))
+				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_TELEPHONE',"Please enter an telephone number.")),
 			TextField::create('ShippingCompany', _t('CheckoutPage.COMPANY',"Company")),
-			TextField::create('ShippingAddress', _t('CheckoutPage.ADDRESS',"Address Line 1"))
+			TextField::create('ShippingAddress', _t('CheckoutPage.ADDRESS',"Street 1"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_ADDRESS',"Please enter an address."))
 				->addExtraClass('address-break'),
-			TextField::create('ShippingAddressLine2', 'Address Line 2'),
+			TextField::create('ShippingAddressLine2', 'Street 2'),
+			TextField::create('ShippingState', _t('CheckoutPage.STATE',"State")),
 			TextField::create('ShippingCity', _t('CheckoutPage.CITY',"City"))
-				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_CITY',"Please enter a city.")),
-			TextField::create('ShippingPostalCode', _t('CheckoutPage.POSTAL_CODE',"Zip / Postal Code")),
-			TextField::create('ShippingState', _t('CheckoutPage.STATE',"State"))
+				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_CITY',"Please enter a city."))
 				->addExtraClass('address-break'),
+			TextField::create('ShippingPostalCode', "Postcode"),
 			DropdownField::create('ShippingCountryCode', 
 					_t('CheckoutPage.COUNTRY',"Country"), 
 					Country_Shipping::get()->map('Code', 'Title')->toArray()
@@ -242,7 +250,7 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('BillingFirstName', _t('CheckoutPage.FIRSTNAME',"First Name"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURFIRSTNAME',"Please enter your first name."))
 				->addExtraClass('address-break'),
-			TextField::create('BillingSurname', _t('CheckoutPage.SURNAME',"Surname"))
+			TextField::create('BillingSurname', _t('CheckoutPage.SURNAME',"Last Name"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURSURNAME',"Please enter your surname.")),
 			TextField::create('BillingCompany', _t('CheckoutPage.COMPANY',"Company")),
 			TextField::create('BillingAddress', _t('CheckoutPage.ADDRESS',"Address Line 1"))
@@ -269,6 +277,7 @@ class Addresses_OrderForm extends Extension {
 		$validator->appendRequiredFields(RequiredFields::create(
 			'ShippingFirstName',
 			'ShippingSurname',
+			'ShippingEmail',
 			'ShippingAddress',
 			'ShippingCity',
 			'ShippingState',
