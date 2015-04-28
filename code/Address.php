@@ -107,8 +107,8 @@ class Address_Shipping extends Address {
 		$formattedData['ShippingAddress'] = $this->Address;
 		$formattedData['ShippingAddressLine2'] = $this->AddressLine2;
 		$formattedData['ShippingCity'] = $this->City;
-		$formattedData['ShippingPostalCode'] = $this->PostalCode;
 		$formattedData['ShippingState'] = $this->State;
+		$formattedData['ShippingPostalCode'] = $this->PostalCode;
 		$formattedData['ShippingCountryCode'] = $this->CountryCode;
 		$formattedData['ShippingRegionCode'] = $this->RegionCode;
 		
