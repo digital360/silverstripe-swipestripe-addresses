@@ -5,14 +5,9 @@
 	</tr>
 	<tr>
 		<td>
-			$BillingFirstName $BillingSurname 
-				
-			<% if MemberEmail %>
-				<a href="Mailto:$MemberEmail">$MemberEmail</a>
-			<% end_if %>
-			<br />
-				
+			$BillingFirstName $BillingSurname <br />
 			<% if BillingCompany %>      $BillingCompany<br />      <% end_if %>
+			<% if MemberEmail %>         <a href = "Mailto:$MemberEmail">$MemberEmail</a><br /><% end_if %>
 			<% if BillingAddress %>      $BillingAddress<br />      <% end_if %>
 			<% if BillingAddressLine2 %> $BillingAddressLine2<br /> <% end_if %>
 			<% if BillingCity %>         $BillingCity<br />         <% end_if %>
@@ -24,12 +19,13 @@
 		
 		<td>
 			$ShippingFirstName $ShippingSurname <br />
-			
 			<% if ShippingCompany %>      $ShippingCompany<br />      <% end_if %>
+			<% if ShippingCompany %>      <a href="mailto:{$ShippingEmail}">$ShippingEmail</a><br />      <% end_if %>
 			<% if ShippingAddress %>      $ShippingAddress<br />      <% end_if %>
 			<% if ShippingAddressLine2 %> $ShippingAddressLine2<br /> <% end_if %>
 			<% if ShippingCity %>         $ShippingCity<br />         <% end_if %>
 			<% if ShippingPostalCode %>   $ShippingPostalCode<br />   <% end_if %>
+			<% if ShippingTelephone %>   $ShippingTelephone<br />   <% end_if %>
 			<% if ShippingState %>        $ShippingState<br />        <% end_if %>
 			<% if ShippingRegionName %>   $ShippingRegionName<br />  <% end_if %>
 			<% if ShippingCountryName %>  $ShippingCountryName<br />  <% end_if %>
