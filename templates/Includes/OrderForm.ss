@@ -105,3 +105,5 @@
 <% if IncludeFormTag %>
 </form>
 <% end_if %>
+<%-- eWay crypt --%>
+<script src="https://secure.ewaypayments.com/scripts/eCrypt.js"></script>
